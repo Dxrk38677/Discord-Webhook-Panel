@@ -392,17 +392,14 @@ function checkWebhookInfo() {
 
     if (webhookURL) {
         fetch(webhookURL, {
-            method: 'POST',
+            method: 'GET',
             headers: {
                 'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-                content: "Webhook test message"
-            })
+            }
         })
         .then(response => {
             if (response.ok) {
-                popUpMessage.textContent = 'Webhook is valid ✅';
+                popUpMessage.textContent = 'Webhook is active ✅';
             } else {
                 popUpMessage.textContent = 'Invalid Webhook ❌';
             }
@@ -417,6 +414,7 @@ function checkWebhookInfo() {
         popUp.classList.add('show');
     }
 }
+
 
 
         function deleteWebhook() {
