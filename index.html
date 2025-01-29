@@ -391,17 +391,25 @@ function checkWebhookInfo() {
     const popUpMessage = document.getElementById('pop-up-message');
 
     if (webhookURL) {
-        fetch(webhookURL, { method: 'POST' })
-            .then(response => {
-                if (response.ok) {
-                    popUpMessage.textContent = 'Webhook is valid ✅';
-                } else {
-                    popUpMessage.textContent = 'Invalid Webhook ❌';
-                }
+        fetch(webhookURL, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                content: "Webhook test message"
             })
-            .catch(() => {
+        })
+        .then(response => {
+            if (response.ok) {
+                popUpMessage.textContent = 'Webhook is valid ✅';
+            } else {
                 popUpMessage.textContent = 'Invalid Webhook ❌';
-            });
+            }
+        })
+        .catch(() => {
+            popUpMessage.textContent = 'Invalid Webhook ❌';
+        });
 
         popUp.classList.add('show');
     } else {
@@ -409,6 +417,8 @@ function checkWebhookInfo() {
         popUp.classList.add('show');
     }
 }
+
+
         function deleteWebhook() {
             const webhookURL = document.getElementById('webhook-url-delete').value;
             const popUp = document.getElementById('pop-up');
