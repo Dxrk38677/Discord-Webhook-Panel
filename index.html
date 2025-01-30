@@ -47,260 +47,293 @@
             --category-border: rgba(204, 204, 204, 0.3);
         }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Inter', sans-serif;
-        }
+        * * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Inter', sans-serif;
+}
 
-        body {
-            background-color: var(--bg-primary);
-            color: var(--text-primary);
-            min-height: 100vh;
-            transition: background-color 0.3s ease;
-            padding: 20px;
-            opacity: 0;
-            animation: fadeIn 1s forwards;
-        }
+body {
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
+    min-height: 100vh;
+    transition: background-color 0.3s ease;
+    padding: 20px;
+    opacity: 0;
+    animation: siteLoad 1s ease-out forwards;
+}
 
-        @keyframes fadeIn {
-            0% {
-                opacity: 0;
-            }
-            100% {
-                opacity: 1;
-            }
-        }
+@keyframes siteLoad {
+    0% {
+        opacity: 0;
+        transform: translateY(-50px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
 
-        .top-bar {
-            background-color: var(--bg-secondary);
-            padding: 16px;
-            border-radius: 12px;
-            margin-bottom: 20px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-        }
+.top-bar {
+    background-color: var(--bg-secondary);
+    padding: 16px;
+    border-radius: 12px;
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
 
-        .content {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 20px;
-        }
+.content {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+}
 
-        .category {
-            background-color: var(--category-bg);
-            border-radius: 12px;
-            padding: 20px;
-            margin-bottom: 20px;
-            border: 1px solid var(--category-border);
-            backdrop-filter: blur(10px);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
+.category {
+    background-color: var(--category-bg);
+    border-radius: 12px;
+    padding: 20px;
+    margin-bottom: 20px;
+    border: 1px solid var(--category-border);
+    backdrop-filter: blur(10px);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
 
-        .category:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
-        }
+.category:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+}
 
-        .category-title {
-            font-size: 1.5em;
-            margin-bottom: 15px;
-            color: var(--text-primary);
-            font-weight: 600;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
+.category-title {
+    font-size: 1.5em;
+    margin-bottom: 15px;
+    color: var(--text-primary);
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
 
-        .category-title::before {
-            content: '';
-            width: 8px;
-            height: 8px;
-            background-color: var(--accent-color);
-            border-radius: 50%;
-        }
+.category-title::before {
+    content: '';
+    width: 8px;
+    height: 8px;
+    background-color: var(--accent-color);
+    border-radius: 50%;
+}
 
-        .section {
-            background-color: var(--bg-tertiary);
-            border-radius: 8px;
-            padding: 20px;
-            margin-bottom: 15px;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
+.section {
+    background-color: var(--bg-tertiary);
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 15px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
 
-        .section:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-        }
+.section:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
 
-        .section-title {
-            font-size: 1.2em;
-            margin-bottom: 10px;
-            color: var(--text-primary);
-            font-weight: 500;
-        }
+.section-title {
+    font-size: 1.2em;
+    margin-bottom: 10px;
+    color: var(--text-primary);
+    font-weight: 500;
+}
 
-        .section-description {
-            color: var(--text-secondary);
-            margin-bottom: 15px;
-            font-size: 0.9em;
-        }
+.section-description {
+    color: var(--text-secondary);
+    margin-bottom: 15px;
+    font-size: 0.9em;
+}
 
-        .button {
-            background-color: var(--accent-color);
-            color: white;
-            border: none;
-            padding: 10px 20px;
-            border-radius: 6px;
-            cursor: pointer;
-            font-size: 16px;
-            font-weight: 500;
-            transition: background-color 0.3s ease, transform 0.1s ease;
-        }
+.button {
+    background-color: var(--accent-color);
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 500;
+    transition: background-color 0.3s ease, transform 0.1s ease;
+    display: inline-block;
+}
 
-        .button:hover {
-            background-color: var(--button-hover);
-            transform: translateY(-2px);
-        }
+.button:hover {
+    background-color: var(--button-hover);
+    transform: translateY(-2px);
+}
 
-        .theme-toggle {
-            background-color: var(--bg-tertiary);
-            border: none;
-            color: var(--text-primary);
-            padding: 8px 16px;
-            border-radius: 6px;
-            cursor: pointer;
-            transition: background-color 0.3s ease, color 0.3s ease;
-        }
+.theme-toggle {
+    background-color: var(--bg-tertiary);
+    border: none;
+    color: var(--text-primary);
+    padding: 8px 16px;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
 
-        .theme-toggle:hover {
-            background-color: var(--accent-color);
-        }
+.theme-toggle:hover {
+    background-color: var(--accent-color);
+}
 
-        .hidden {
-            display: none;
-        }
+.hidden {
+    display: none;
+}
 
-        .input-field {
-            margin-top: 10px;
-            width: 100%;
-            position: relative;
-            text-align: left;
-            overflow: hidden;
-            height: 0;
-            opacity: 0;
-            transform: translateY(-10px);
-            transition: all 0.3s ease;
-        }
+.input-field {
+    margin-top: 10px;
+    width: 100%;
+    position: relative;
+    text-align: left;
+    overflow: hidden;
+    height: 0;
+    opacity: 0;
+    transform: translateY(-10px);
+    transition: all 0.5s ease-out;
+}
 
-        .input-field.show {
-            height: auto;
-            opacity: 1;
-            transform: translateY(0);
-        }
+.input-field.show {
+    height: auto;
+    opacity: 1;
+    transform: translateY(0);
+    animation: slideInFromButton 0.5s ease-out forwards;
+}
 
-        .input-field input {
-            padding: 12px;
-            width: 100%;
-            border-radius: 6px;
-            border: 1px solid var(--input-border);
-            background-color: var(--input-bg);
-            color: var(--input-text-color);
-            font-size: 16px;
-            transition: border 0.3s ease, transform 0.2s ease;
-        }
+@keyframes slideInFromButton {
+    0% {
+        transform: translateY(-20px);
+        opacity: 0;
+    }
+    100% {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
 
-        .input-field input:focus {
-            border: 1px solid var(--input-border-focus);
-            outline: none;
-            transform: translateY(-2px);
-        }
+.input-field input {
+    padding: 12px;
+    width: 100%;
+    border-radius: 6px;
+    border: 1px solid var(--input-border);
+    background-color: var(--input-bg);
+    color: var(--input-text-color);
+    font-size: 16px;
+    transition: border 0.3s ease, transform 0.2s ease;
+}
 
-        .send-button {
-            margin-top: 10px;
-            background-color: var(--accent-color);
-            color: white;
-            border: none;
-            padding: 10px 20px;
-            border-radius: 6px;
-            cursor: pointer;
-            font-size: 16px;
-            font-weight: 500;
-            transition: background-color 0.3s ease, transform 0.1s ease;
-        }
+.input-field input:focus {
+    border: 1px solid var(--input-border-focus);
+    outline: none;
+    transform: translateY(-2px);
+}
 
-        .send-button:hover {
-            background-color: var(--button-hover);
-            transform: translateY(-2px);
-        }
+.send-button {
+    margin-top: 10px;
+    background-color: var(--accent-color);
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 500;
+    transition: background-color 0.3s ease, transform 0.1s ease;
+    display: inline-block;
+}
 
-        .pop-up {
-            background-color: var(--pop-up-bg);
-            position: fixed;
-            top: 20px;
-            left: 50%;
-            transform: translateX(-50%);
-            padding: 15px 30px;
-            border-radius: 8px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-            z-index: 999;
-            display: none;
-            opacity: 0;
-            animation: popUpFadeIn 0.3s forwards;
-        }
+.send-button:hover {
+    background-color: var(--button-hover);
+    transform: translateY(-2px);
+}
 
-        @keyframes popUpFadeIn {
-            0% {
-                opacity: 0;
-                transform: translateX(-50%) translateY(-10px);
-            }
-            100% {
-                opacity: 1;
-                transform: translateX(-50%) translateY(0);
-            }
-        }
+.pop-up {
+    background-color: var(--pop-up-bg);
+    position: fixed;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 15px 30px;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    z-index: 999;
+    display: none;
+    opacity: 0;
+    animation: popUpFadeIn 0.3s forwards;
+}
 
-        .pop-up.show {
-            display: block;
-            opacity: 1;
-        }
+@keyframes popUpFadeIn {
+    0% {
+        opacity: 0;
+        transform: translateX(-50%) translateY(-10px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateX(-50%) translateY(0);
+    }
+}
 
-        .pop-up p {
-            color: var(--text-primary);
-            font-size: 16px;
-        }
+.pop-up.show {
+    display: block;
+    opacity: 1;
+}
 
-        .close-btn {
-            position: absolute;
-            top: 5px;
-            right: 5px;
-            background-color: var(--close-btn-bg);
-            color: white;
-            border: none;
-            border-radius: 50%;
-            width: 25px;
-            height: 25px;
-            cursor: pointer;
-            font-size: 16px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
+.pop-up p {
+    color: var(--text-primary);
+    font-size: 16px;
+}
 
-        .close-btn:hover {
-            background-color: var(--close-btn-hover-bg);
-        }
+.close-btn {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    background-color: var(--close-btn-bg);
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 25px;
+    height: 25px;
+    cursor: pointer;
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
 
-        .credit {
-            position: fixed;
-            bottom: 10px;
-            right: 20px;
-            font-size: 12px;
-            color: var(--credit-color);
-        }
+.close-btn:hover {
+    background-color: var(--close-btn-hover-bg);
+}
+
+.credit {
+    position: fixed;
+    bottom: 10px;
+    right: 20px;
+    font-size: 12px;
+    color: var(--credit-color);
+}
+
+@keyframes slideOut {
+    0% {
+        transform: translateY(0);
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(20px);
+        opacity: 0;
+    }
+}
+
+.input-field, .send-button {
+    animation: slideInFromButton 0.5s ease-out forwards;
+}
+
+
     </style>
 </head>
 <body>
@@ -390,7 +423,7 @@
 
     <div id="pop-up" class="pop-up">
         <button class="close-btn" onclick="closePopUp()">❌</button>
-        <p id="pop-up-message">Webhook Invalid</p>
+        <p id="pop-up-message">Webhook Invalid ❌</p>
     </div>
 
     <div class="credit">Made By Dxrk3867</div>
@@ -438,7 +471,7 @@
 
                 popUp.classList.add('show');
             } else {
-                popUpMessage.textContent = 'Invalid Webhook URL';
+                popUpMessage.textContent = 'Invalid Webhook URL ❌';
                 popUp.classList.add('show');
             }
         }
