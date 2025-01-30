@@ -89,6 +89,28 @@
     --category-border: rgba(255, 205, 210, 0.3);
 }
 
+.summer-theme {
+    --bg-primary: #ffcc80; /* Warm sunset orange */
+    --bg-secondary: #ffb74d; /* Lighter sunset orange */
+    --bg-tertiary: #ffa726; /* Vibrant orange */
+    --text-primary: #ffffff; /* White for readability */
+    --text-secondary: #ffeb3b; /* Bright yellow for highlights */
+    --accent-color: #ff5722; /* Fiery red-orange */
+    --accent-hover: #e64a19; /* Darker red-orange */
+    --pop-up-bg: #ffb74d; /* Soft warm orange */
+    --input-bg: #ffcc80; /* Light warm orange */
+    --input-border: #ff5722; /* Accent border */
+    --input-text-color: #ffffff; /* White text */
+    --button-hover: #e64a19; /* Darker shade for hover effect */
+    --input-border-focus: #ff5722; /* Focused input border */
+    --close-btn-bg: #ff5722; /* Close button in accent color */
+    --close-btn-hover-bg: #e64a19; /* Hover effect */
+    --credit-color: #ffeb3b; /* Bright yellow for contrast */
+    --category-bg: #ffb74d; /* Soft orange category background */
+    --category-border: rgba(255, 235, 59, 0.3); /* Transparent yellow border */
+}
+
+
 * {
     margin: 0;
     padding: 0;
@@ -441,6 +463,77 @@ body {
     animation: none;
 }
 
+.summer-theme body {
+    background: var(--bg-primary);
+    animation: sunshine 5s linear infinite alternate;
+}
+
+.summer-theme .top-bar {
+    background: var(--bg-secondary);
+    animation: wave 3s ease-in-out infinite;
+}
+
+.summer-theme .category {
+    background: var(--category-bg);
+    border: 1px solid var(--category-border);
+    animation: wave 4s ease-in-out infinite;
+}
+
+.summer-theme .section {
+    background: var(--bg-tertiary);
+    animation: sunshine 3s infinite alternate;
+}
+
+.summer-theme .button {
+    background: var(--accent-color);
+    border: 1px solid var(--input-border);
+    animation: glow 2s infinite;
+}
+
+.summer-theme .button:hover {
+    background: var(--button-hover);
+    animation: none;
+}
+
+.summer-theme .input-field input {
+    background: var(--input-bg);
+    border: 1px solid var(--input-border);
+    color: var(--input-text-color);
+    animation: sunshine 2s infinite alternate;
+}
+
+.summer-theme .pop-up {
+    background: var(--bg-primary);
+    animation: wave 5s ease-in-out infinite;
+}
+
+.summer-theme .close-btn {
+    background: var(--close-btn-bg);
+    animation: glow 1.5s infinite;
+}
+
+.summer-theme .close-btn:hover {
+    background: var(--close-btn-hover-bg);
+    animation: none;
+}
+
+/* Animations */
+@keyframes sunshine {
+    0% { filter: brightness(1); }
+    100% { filter: brightness(1.2); }
+}
+
+@keyframes wave {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-5px); }
+}
+
+@keyframes glow {
+    0% { box-shadow: 0 0 5px var(--accent-color); }
+    100% { box-shadow: 0 0 15px var(--accent-color); }
+}
+
+
 @keyframes flicker {
     0% {
         opacity: 1;
@@ -577,7 +670,7 @@ body {
         <p id="pop-up-message">Webhook Invalid ❌</p>
     </div>
 
-    <div class="credit">Made By Dxrk3867</div>
+    <div class="credit">Made By Dxrk3867 & Zyphix(Summer Theme) <3</div>
 
     <script>
        let currentTheme = 'dark';
@@ -587,22 +680,27 @@ function toggleTheme() {
     const themeToggle = document.querySelector('.theme-toggle');
 
     if (currentTheme === 'dark') {
-        body.classList.remove('halloween-theme', 'christmas-theme');
+        body.classList.remove('halloween-theme', 'christmas-theme', 'summer-theme');
         body.classList.add('light-theme');
         themeToggle.textContent = '🌞';
         currentTheme = 'light';
     } else if (currentTheme === 'light') {
-        body.classList.remove('light-theme', 'christmas-theme');
+        body.classList.remove('light-theme', 'christmas-theme', 'summer-theme');
         body.classList.add('halloween-theme');
         themeToggle.textContent = '🎃';
         currentTheme = 'halloween';
     } else if (currentTheme === 'halloween') {
-        body.classList.remove('halloween-theme', 'light-theme');
+        body.classList.remove('halloween-theme', 'light-theme', 'summer-theme');
         body.classList.add('christmas-theme');
         themeToggle.textContent = '🎄';
         currentTheme = 'christmas';
-    } else {
+    } else if (currentTheme === 'christmas') {
         body.classList.remove('christmas-theme', 'light-theme', 'halloween-theme');
+        body.classList.add('summer-theme');
+        themeToggle.textContent = '🌴';
+        currentTheme = 'summer';
+    } else {
+        body.classList.remove('christmas-theme', 'light-theme', 'halloween-theme', 'summer-theme');
         themeToggle.textContent = '🌙';
         currentTheme = 'dark';
     }
