@@ -5,49 +5,91 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Discord Webhook Panel</title>
     <style>
-        :root {
-            --bg-primary: #36393f;
-            --bg-secondary: #2f3136;
-            --bg-tertiary: #202225;
-            --text-primary: #ffffff;
-            --text-secondary: #b9bbbe;
-            --accent-color: #5865f2;
-            --accent-hover: #4752c4;
-            --pop-up-bg: #2f3136;
-            --input-bg: #40444b;
-            --input-border: #2f3136;
-            --input-text-color: #dcddde;
-            --button-hover: #4752c4;
-            --input-border-focus: #5865f2;
-            --close-btn-bg: #ff4757;
-            --close-btn-hover-bg: #d63e4c;
-            --credit-color: #b0b0b0;
-            --category-bg: rgba(47, 49, 54, 0.8);
-            --category-border: rgba(64, 68, 75, 0.3);
-        }
+       :root {
+    --bg-primary: #36393f;
+    --bg-secondary: #2f3136;
+    --bg-tertiary: #202225;
+    --text-primary: #ffffff;
+    --text-secondary: #b9bbbe;
+    --accent-color: #5865f2;
+    --accent-hover: #4752c4;
+    --pop-up-bg: #2f3136;
+    --input-bg: #40444b;
+    --input-border: #2f3136;
+    --input-text-color: #dcddde;
+    --button-hover: #4752c4;
+    --input-border-focus: #5865f2;
+    --close-btn-bg: #ff4757;
+    --close-btn-hover-bg: #d63e4c;
+    --credit-color: #b0b0b0;
+    --category-bg: rgba(47, 49, 54, 0.8);
+    --category-border: rgba(64, 68, 75, 0.3);
+}
 
-        .light-theme {
-            --bg-primary: #ffffff;
-            --bg-secondary: #f2f3f5;
-            --bg-tertiary: #e3e5e8;
-            --text-primary: #2e3338;
-            --text-secondary: #747f8d;
-            --accent-color: #5865f2;
-            --accent-hover: #4752c4;
-            --pop-up-bg: #ffffff;
-            --input-bg: #ffffff;
-            --input-border: #ccc;
-            --input-text-color: #2e3338;
-            --button-hover: #4752c4;
-            --input-border-focus: #5865f2;
-            --close-btn-bg: #ff4757;
-            --close-btn-hover-bg: #d63e4c;
-            --credit-color: #747f8d;
-            --category-bg: rgba(242, 243, 245, 0.8);
-            --category-border: rgba(204, 204, 204, 0.3);
-        }
+.light-theme {
+    --bg-primary: #ffffff;
+    --bg-secondary: #f2f3f5;
+    --bg-tertiary: #e3e5e8;
+    --text-primary: #2e3338;
+    --text-secondary: #747f8d;
+    --accent-color: #5865f2;
+    --accent-hover: #4752c4;
+    --pop-up-bg: #ffffff;
+    --input-bg: #ffffff;
+    --input-border: #ccc;
+    --input-text-color: #2e3338;
+    --button-hover: #4752c4;
+    --input-border-focus: #5865f2;
+    --close-btn-bg: #ff4757;
+    --close-btn-hover-bg: #d63e4c;
+    --credit-color: #747f8d;
+    --category-bg: rgba(242, 243, 245, 0.8);
+    --category-border: rgba(204, 204, 204, 0.3);
+}
 
-        * * {
+.halloween-theme {
+    --bg-primary: #1a1a1a;
+    --bg-secondary: #2c1a00;
+    --bg-tertiary: #4a2a00;
+    --text-primary: #ffffff;
+    --text-secondary: #ff8c42;
+    --accent-color: #ff6b00;
+    --accent-hover: #ff8c42;
+    --pop-up-bg: #4a2a00;
+    --input-bg: #2c1a00;
+    --input-border: #ff8c42;
+    --input-text-color: #ffffff;
+    --button-hover: #ff8c42;
+    --input-border-focus: #ff8c42;
+    --close-btn-bg: #ff6b00;
+    --close-btn-hover-bg: #ff8c42;
+    --credit-color: #ff8c42;
+    --category-bg: #4a2a00;
+    --category-border: rgba(255, 140, 66, 0.3);
+}
+
+.christmas-theme {
+    --bg-primary: #1b5e20;
+    --bg-secondary: #2e7d32;
+    --bg-tertiary: #388e3c;
+    --text-primary: #ffffff;
+    --text-secondary: #ffcdd2;
+    --accent-color: #d32f2f;
+    --accent-hover: #c62828;
+    --pop-up-bg: #2e7d32;
+    --input-bg: #388e3c;
+    --input-border: #d32f2f;
+    --input-text-color: #ffffff;
+    --button-hover: #c62828;
+    --input-border-focus: #d32f2f;
+    --close-btn-bg: #d32f2f;
+    --close-btn-hover-bg: #c62828;
+    --credit-color: #ffcdd2;
+    --category-bg: #2e7d32;
+    --category-border: rgba(255, 205, 210, 0.3);
+}
+
+* {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -58,7 +100,7 @@ body {
     background-color: var(--bg-primary);
     color: var(--text-primary);
     min-height: 100vh;
-    transition: background-color 0.3s ease;
+    transition: background-color 0.3s ease, color 0.3s ease;
     padding: 20px;
     opacity: 0;
     animation: siteLoad 1s ease-out forwards;
@@ -84,6 +126,7 @@ body {
     justify-content: space-between;
     align-items: center;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
 }
 
 .content {
@@ -268,71 +311,180 @@ body {
     animation: popUpFadeIn 0.3s forwards;
 }
 
-@keyframes popUpFadeIn {
-    0% {
-        opacity: 0;
-        transform: translateX(-50%) translateY(-10px);
-    }
-    100% {
-        opacity: 1;
-        transform: translateX(-50%) translateY(0);
-    }
-}
-
 .pop-up.show {
     display: block;
     opacity: 1;
 }
 
-.pop-up p {
-    color: var(--text-primary);
-    font-size: 16px;
-}
-
-.close-btn {
-    position: absolute;
-    top: 5px;
-    right: 5px;
-    background-color: var(--close-btn-bg);
-    color: white;
-    border: none;
-    border-radius: 50%;
-    width: 25px;
-    height: 25px;
-    cursor: pointer;
-    font-size: 16px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.close-btn:hover {
+.pop-up .close-btn:hover {
     background-color: var(--close-btn-hover-bg);
 }
 
-.credit {
+.made-by {
     position: fixed;
     bottom: 10px;
-    right: 20px;
+    right: 10px;
     font-size: 12px;
     color: var(--credit-color);
+    text-align: right;
+    font-weight: 400;
+    z-index: 9999;
+    opacity: 0.8;
+    transition: opacity 0.3s ease;
 }
 
-@keyframes slideOut {
+.made-by:hover {
+    opacity: 1;
+}
+
+.halloween-theme body {
+    background: var(--bg-primary);
+    animation: flicker 2s infinite alternate;
+}
+
+.halloween-theme .top-bar {
+    background: var(--bg-secondary);
+    animation: float 3s ease-in-out infinite;
+}
+
+.halloween-theme .category {
+    background: var(--category-bg);
+    border: 1px solid var(--category-border);
+    animation: float 4s ease-in-out infinite;
+}
+
+.halloween-theme .section {
+    background: var(--bg-tertiary);
+    animation: flicker 3s infinite alternate;
+}
+
+.halloween-theme .button {
+    background: var(--accent-color);
+    border: 1px solid var(--input-border);
+    animation: pulse 2s infinite;
+}
+
+.halloween-theme .button:hover {
+    background: var(--button-hover);
+    animation: none;
+}
+
+.halloween-theme .input-field input {
+    background: var(--input-bg);
+    border: 1px solid var(--input-border);
+    color: var(--input-text-color);
+    animation: flicker 2s infinite alternate;
+}
+
+.halloween-theme .pop-up {
+    background: var(--bg-primary);
+    animation: float 5s;
+}
+
+.halloween-theme .close-btn {
+    background: var(--close-btn-bg);
+    animation: pulse 1.5s infinite;
+}
+
+.halloween-theme .close-btn:hover {
+    background: var(--close-btn-hover-bg);
+    animation: none;
+}
+
+.christmas-theme body {
+    background: var(--bg-primary);
+    animation: snowfall 10s linear infinite;
+}
+
+.christmas-theme .top-bar {
+    background: var(--bg-secondary);
+}
+
+.christmas-theme .category {
+    background: var(--category-bg);
+    border: 1px solid var(--category-border);
+}
+
+.christmas-theme .section {
+    background: var(--bg-tertiary);
+}
+
+.christmas-theme .button {
+    background: var(--accent-color);
+    border: 1px solid var(--input-border);
+    color: var(--text-primary);
+    animation: pulse 2s infinite;
+}
+
+.christmas-theme .button:hover {
+    background: var(--button-hover);
+    animation: none;
+}
+
+.christmas-theme .input-field input {
+    background: var(--input-bg);
+    border: 1px solid var(--input-border);
+    color: var(--input-text-color);
+}
+
+.christmas-theme .pop-up {
+    background: var(--pop-up-bg);
+}
+
+.christmas-theme .close-btn {
+    background: var(--close-btn-bg);
+    animation: pulse 1.5s infinite;
+}
+
+.christmas-theme .close-btn:hover {
+    background: var(--close-btn-hover-bg);
+    animation: none;
+}
+
+@keyframes flicker {
     0% {
-        transform: translateY(0);
         opacity: 1;
     }
+    50% {
+        opacity: 0.8;
+    }
     100% {
-        transform: translateY(20px);
-        opacity: 0;
+        opacity: 1;
     }
 }
 
-.input-field, .send-button {
-    animation: slideInFromButton 0.5s ease-out forwards;
+@keyframes float {
+    0% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-10px);
+    }
+    100% {
+        transform: translateY(0);
+    }
 }
 
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.1);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+@keyframes snowfall {
+    0% {
+        background: rgba(0, 0, 0, 0);
+    }
+    100% {
+        background: rgba(255, 255, 255, 0.1);
+    }
+}
 
     </style>
 </head>
@@ -422,22 +574,39 @@ body {
     </div>
 
     <div id="pop-up" class="pop-up">
-        <button class="close-btn" onclick="closePopUp()">❌</button>
         <p id="pop-up-message">Webhook Invalid ❌</p>
     </div>
 
     <div class="credit">Made By Dxrk3867</div>
 
     <script>
-        let theme = localStorage.getItem('theme') || 'dark';
-        document.body.classList.add(theme + '-theme');
+       let currentTheme = 'dark';
 
-        function toggleTheme() {
-            theme = theme === 'dark' ? 'light' : 'dark';
-            document.body.classList.toggle('dark-theme');
-            document.body.classList.toggle('light-theme');
-            localStorage.setItem('theme', theme);
-        }
+function toggleTheme() {
+    const body = document.body;
+    const themeToggle = document.querySelector('.theme-toggle');
+
+    if (currentTheme === 'dark') {
+        body.classList.remove('halloween-theme', 'christmas-theme');
+        body.classList.add('light-theme');
+        themeToggle.textContent = '🌞';
+        currentTheme = 'light';
+    } else if (currentTheme === 'light') {
+        body.classList.remove('light-theme', 'christmas-theme');
+        body.classList.add('halloween-theme');
+        themeToggle.textContent = '🎃';
+        currentTheme = 'halloween';
+    } else if (currentTheme === 'halloween') {
+        body.classList.remove('halloween-theme', 'light-theme');
+        body.classList.add('christmas-theme');
+        themeToggle.textContent = '🎄';
+        currentTheme = 'christmas';
+    } else {
+        body.classList.remove('christmas-theme', 'light-theme', 'halloween-theme');
+        themeToggle.textContent = '🌙';
+        currentTheme = 'dark';
+    }
+}
 
         function toggleInput(id) {
             const section = document.getElementById(id);
