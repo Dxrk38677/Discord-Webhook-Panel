@@ -31,6 +31,9 @@ You can set the number of times to spam, the username, and the avatar. It's usef
 
 - **Dark Mode** 🌙: Sleek and easy on the eyes at night.
 - **Light Mode** 🌞: Bright and vibrant for daytime use.
+- **Halloween Theme** 🎃: Orange And Dark For Halloween.
+- **Christmas Theme** 🎄: Green And Red Like Christmas <3.
+- **Summer Theme** 🌴: Summer Tropical Made By Zyphix.
 
 Switch between the two with just a click!
 
@@ -80,6 +83,7 @@ You can switch between **Dark Mode** 🌙 and **Light Mode** 🌞 using the them
 
 Made with ❤️ by **Dxrk3867**.  
 Discord : Dxrk3867 Or Justachillcoder
+Summer Theme Made By Zyphix <3
 
 ---
 
