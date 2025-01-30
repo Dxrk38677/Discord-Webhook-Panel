@@ -1,4 +1,684 @@
-function playThemeSound() {
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Discord Webhook Panel</title>
+    <style>
+       :root {
+    --bg-primary: #36393f;
+    --bg-secondary: #2f3136;
+    --bg-tertiary: #202225;
+    --text-primary: #ffffff;
+    --text-secondary: #b9bbbe;
+    --accent-color: #5865f2;
+    --accent-hover: #4752c4;
+    --pop-up-bg: #2f3136;
+    --input-bg: #40444b;
+    --input-border: #2f3136;
+    --input-text-color: #dcddde;
+    --button-hover: #4752c4;
+    --input-border-focus: #5865f2;
+    --close-btn-bg: #ff4757;
+    --close-btn-hover-bg: #d63e4c;
+    --credit-color: #b0b0b0;
+    --category-bg: rgba(47, 49, 54, 0.8);
+    --category-border: rgba(64, 68, 75, 0.3);
+}
+
+.light-theme {
+    --bg-primary: #ffffff;
+    --bg-secondary: #f2f3f5;
+    --bg-tertiary: #e3e5e8;
+    --text-primary: #2e3338;
+    --text-secondary: #747f8d;
+    --accent-color: #5865f2;
+    --accent-hover: #4752c4;
+    --pop-up-bg: #ffffff;
+    --input-bg: #ffffff;
+    --input-border: #ccc;
+    --input-text-color: #2e3338;
+    --button-hover: #4752c4;
+    --input-border-focus: #5865f2;
+    --close-btn-bg: #ff4757;
+    --close-btn-hover-bg: #d63e4c;
+    --credit-color: #747f8d;
+    --category-bg: rgba(242, 243, 245, 0.8);
+    --category-border: rgba(204, 204, 204, 0.3);
+}
+
+.halloween-theme {
+    --bg-primary: #1a1a1a;
+    --bg-secondary: #2c1a00;
+    --bg-tertiary: #4a2a00;
+    --text-primary: #ffffff;
+    --text-secondary: #ff8c42;
+    --accent-color: #ff6b00;
+    --accent-hover: #ff8c42;
+    --pop-up-bg: #4a2a00;
+    --input-bg: #2c1a00;
+    --input-border: #ff8c42;
+    --input-text-color: #ffffff;
+    --button-hover: #ff8c42;
+    --input-border-focus: #ff8c42;
+    --close-btn-bg: #ff6b00;
+    --close-btn-hover-bg: #ff8c42;
+    --credit-color: #ff8c42;
+    --category-bg: #4a2a00;
+    --category-border: rgba(255, 140, 66, 0.3);
+}
+
+.christmas-theme {
+    --bg-primary: #1b5e20;
+    --bg-secondary: #2e7d32;
+    --bg-tertiary: #388e3c;
+    --text-primary: #ffffff;
+    --text-secondary: #ffcdd2;
+    --accent-color: #d32f2f;
+    --accent-hover: #c62828;
+    --pop-up-bg: #2e7d32;
+    --input-bg: #388e3c;
+    --input-border: #d32f2f;
+    --input-text-color: #ffffff;
+    --button-hover: #c62828;
+    --input-border-focus: #d32f2f;
+    --close-btn-bg: #d32f2f;
+    --close-btn-hover-bg: #c62828;
+    --credit-color: #ffcdd2;
+    --category-bg: #2e7d32;
+    --category-border: rgba(255, 205, 210, 0.3);
+}
+
+.summer-theme {
+    --bg-primary: #ffcc80; /* Warm sunset orange */
+    --bg-secondary: #ffb74d; /* Lighter sunset orange */
+    --bg-tertiary: #ffa726; /* Vibrant orange */
+    --text-primary: #ffffff; /* White for readability */
+    --text-secondary: #ffeb3b; /* Bright yellow for highlights */
+    --accent-color: #ff5722; /* Fiery red-orange */
+    --accent-hover: #e64a19; /* Darker red-orange */
+    --pop-up-bg: #ffb74d; /* Soft warm orange */
+    --input-bg: #ffcc80; /* Light warm orange */
+    --input-border: #ff5722; /* Accent border */
+    --input-text-color: #ffffff; /* White text */
+    --button-hover: #e64a19; /* Darker shade for hover effect */
+    --input-border-focus: #ff5722; /* Focused input border */
+    --close-btn-bg: #ff5722; /* Close button in accent color */
+    --close-btn-hover-bg: #e64a19; /* Hover effect */
+    --credit-color: #ffeb3b; /* Bright yellow for contrast */
+    --category-bg: #ffb74d; /* Soft orange category background */
+    --category-border: rgba(255, 235, 59, 0.3); /* Transparent yellow border */
+}
+
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Inter', sans-serif;
+}
+
+body {
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
+    min-height: 100vh;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    padding: 20px;
+    opacity: 0;
+    animation: siteLoad 1s ease-out forwards;
+}
+
+@keyframes siteLoad {
+    0% {
+        opacity: 0;
+        transform: translateY(-50px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.top-bar {
+    background-color: var(--bg-secondary);
+    padding: 16px;
+    border-radius: 12px;
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.content {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+}
+
+.category {
+    background-color: var(--category-bg);
+    border-radius: 12px;
+    padding: 20px;
+    margin-bottom: 20px;
+    border: 1px solid var(--category-border);
+    backdrop-filter: blur(10px);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.category:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+}
+
+.category-title {
+    font-size: 1.5em;
+    margin-bottom: 15px;
+    color: var(--text-primary);
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.category-title::before {
+    content: '';
+    width: 8px;
+    height: 8px;
+    background-color: var(--accent-color);
+    border-radius: 50%;
+}
+
+.section {
+    background-color: var(--bg-tertiary);
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 15px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.section:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.section-title {
+    font-size: 1.2em;
+    margin-bottom: 10px;
+    color: var(--text-primary);
+    font-weight: 500;
+}
+
+.section-description {
+    color: var(--text-secondary);
+    margin-bottom: 15px;
+    font-size: 0.9em;
+}
+
+.button {
+    background-color: var(--accent-color);
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 500;
+    transition: background-color 0.3s ease, transform 0.1s ease;
+    display: inline-block;
+}
+
+.button:hover {
+    background-color: var(--button-hover);
+    transform: translateY(-2px);
+}
+
+.theme-toggle {
+    background-color: var(--bg-tertiary);
+    border: none;
+    color: var(--text-primary);
+    padding: 8px 16px;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.theme-toggle:hover {
+    background-color: var(--accent-color);
+}
+
+.hidden {
+    display: none;
+}
+
+.input-field {
+    margin-top: 10px;
+    width: 100%;
+    position: relative;
+    text-align: left;
+    overflow: hidden;
+    height: 0;
+    opacity: 0;
+    transform: translateY(-10px);
+    transition: all 0.5s ease-out;
+}
+
+.input-field.show {
+    height: auto;
+    opacity: 1;
+    transform: translateY(0);
+    animation: slideInFromButton 0.5s ease-out forwards;
+}
+
+@keyframes slideInFromButton {
+    0% {
+        transform: translateY(-20px);
+        opacity: 0;
+    }
+    100% {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+.input-field input {
+    padding: 12px;
+    width: 100%;
+    border-radius: 6px;
+    border: 1px solid var(--input-border);
+    background-color: var(--input-bg);
+    color: var(--input-text-color);
+    font-size: 16px;
+    transition: border 0.3s ease, transform 0.2s ease;
+}
+
+.input-field input:focus {
+    border: 1px solid var(--input-border-focus);
+    outline: none;
+    transform: translateY(-2px);
+}
+
+.send-button {
+    margin-top: 10px;
+    background-color: var(--accent-color);
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 500;
+    transition: background-color 0.3s ease, transform 0.1s ease;
+    display: inline-block;
+}
+
+.send-button:hover {
+    background-color: var(--button-hover);
+    transform: translateY(-2px);
+}
+
+.pop-up {
+    background-color: var(--pop-up-bg);
+    position: fixed;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 15px 30px;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    z-index: 999;
+    display: none;
+    opacity: 0;
+    animation: popUpFadeIn 0.3s forwards;
+}
+
+.pop-up.show {
+    display: block;
+    opacity: 1;
+}
+
+.pop-up .close-btn:hover {
+    background-color: var(--close-btn-hover-bg);
+}
+
+.made-by {
+    position: fixed;
+    bottom: 10px;
+    right: 10px;
+    font-size: 12px;
+    color: var(--credit-color);
+    text-align: right;
+    font-weight: 400;
+    z-index: 9999;
+    opacity: 0.8;
+    transition: opacity 0.3s ease;
+}
+
+.made-by:hover {
+    opacity: 1;
+}
+
+.halloween-theme body {
+    background: var(--bg-primary);
+    animation: flicker 2s infinite alternate;
+}
+
+.halloween-theme .top-bar {
+    background: var(--bg-secondary);
+    animation: float 3s ease-in-out infinite;
+}
+
+.halloween-theme .category {
+    background: var(--category-bg);
+    border: 1px solid var(--category-border);
+    animation: float 4s ease-in-out infinite;
+}
+
+.halloween-theme .section {
+    background: var(--bg-tertiary);
+    animation: flicker 3s infinite alternate;
+}
+
+.halloween-theme .button {
+    background: var(--accent-color);
+    border: 1px solid var(--input-border);
+    animation: pulse 2s infinite;
+}
+
+.halloween-theme .button:hover {
+    background: var(--button-hover);
+    animation: none;
+}
+
+.halloween-theme .input-field input {
+    background: var(--input-bg);
+    border: 1px solid var(--input-border);
+    color: var(--input-text-color);
+    animation: flicker 2s infinite alternate;
+}
+
+.halloween-theme .pop-up {
+    background: var(--bg-primary);
+    animation: float 5s;
+}
+
+.halloween-theme .close-btn {
+    background: var(--close-btn-bg);
+    animation: pulse 1.5s infinite;
+}
+
+.halloween-theme .close-btn:hover {
+    background: var(--close-btn-hover-bg);
+    animation: none;
+}
+
+.christmas-theme body {
+    background: var(--bg-primary);
+    animation: snowfall 10s linear infinite;
+}
+
+.christmas-theme .top-bar {
+    background: var(--bg-secondary);
+}
+
+.christmas-theme .category {
+    background: var(--category-bg);
+    border: 1px solid var(--category-border);
+}
+
+.christmas-theme .section {
+    background: var(--bg-tertiary);
+}
+
+.christmas-theme .button {
+    background: var(--accent-color);
+    border: 1px solid var(--input-border);
+    color: var(--text-primary);
+    animation: pulse 2s infinite;
+}
+
+.christmas-theme .button:hover {
+    background: var(--button-hover);
+    animation: none;
+}
+
+.christmas-theme .input-field input {
+    background: var(--input-bg);
+    border: 1px solid var(--input-border);
+    color: var(--input-text-color);
+}
+
+.christmas-theme .pop-up {
+    background: var(--pop-up-bg);
+}
+
+.christmas-theme .close-btn {
+    background: var(--close-btn-bg);
+    animation: pulse 1.5s infinite;
+}
+
+.christmas-theme .close-btn:hover {
+    background: var(--close-btn-hover-bg);
+    animation: none;
+}
+
+.summer-theme body {
+    background: var(--bg-primary);
+    animation: sunshine 5s linear infinite alternate;
+}
+
+.summer-theme .top-bar {
+    background: var(--bg-secondary);
+    animation: wave 3s ease-in-out infinite;
+}
+
+.summer-theme .category {
+    background: var(--category-bg);
+    border: 1px solid var(--category-border);
+    animation: wave 4s ease-in-out infinite;
+}
+
+.summer-theme .section {
+    background: var(--bg-tertiary);
+    animation: sunshine 3s infinite alternate;
+}
+
+.summer-theme .button {
+    background: var(--accent-color);
+    border: 1px solid var(--input-border);
+    animation: glow 2s infinite;
+}
+
+.summer-theme .button:hover {
+    background: var(--button-hover);
+    animation: none;
+}
+
+.summer-theme .input-field input {
+    background: var(--input-bg);
+    border: 1px solid var(--input-border);
+    color: var(--input-text-color);
+    animation: sunshine 2s infinite alternate;
+}
+
+.summer-theme .pop-up {
+    background: var(--bg-primary);
+    animation: wave 5s ease-in-out infinite;
+}
+
+.summer-theme .close-btn {
+    background: var(--close-btn-bg);
+    animation: glow 1.5s infinite;
+}
+
+.summer-theme .close-btn:hover {
+    background: var(--close-btn-hover-bg);
+    animation: none;
+}
+
+/* Animations */
+@keyframes sunshine {
+    0% { filter: brightness(1); }
+    100% { filter: brightness(1.2); }
+}
+
+@keyframes wave {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-5px); }
+}
+
+@keyframes glow {
+    0% { box-shadow: 0 0 5px var(--accent-color); }
+    100% { box-shadow: 0 0 15px var(--accent-color); }
+}
+
+
+@keyframes flicker {
+    0% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0.8;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+@keyframes float {
+    0% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-10px);
+    }
+    100% {
+        transform: translateY(0);
+    }
+}
+
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.1);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+@keyframes snowfall {
+    0% {
+        background: rgba(0, 0, 0, 0);
+    }
+    100% {
+        background: rgba(255, 255, 255, 0.1);
+    }
+}
+
+    </style>
+</head>
+<body>
+    <div class="top-bar">
+        <h1>Discord Webhook Panel</h1>
+        <button class="theme-toggle" onclick="toggleTheme()">💡</button>
+    </div>
+    <audio id="popupSound" src="popup.mp3" preload="auto"></audio>
+    <audio id="toggleSound" src="Toggle.wav" preload="auto"></audio>
+    <audio id="untoggleSound" src="Untoggle.wav" preload="auto"></audio>
+    <audio id="clickSound" src="click.mp3" preload="auto"></audio>
+       
+    <div class="content">
+        <!-- Main Category -->
+        <div class="category">
+            <h2 class="category-title">🏠Main</h2>
+            <div class="section">
+                <h2 class="section-title">🔎 Webhook Info</h2>
+                <p class="section-description">Check if the webhook is active.</p>
+                <button class="button" onclick="toggleInput('webhook-info')">🔍 Check Webhook Info</button>
+                <div id="webhook-info" class="hidden">
+                    <div class="input-field">
+                        <input type="text" id="webhook-url-info" placeholder="Enter Webhook URL">
+                    </div>
+                    <button class="send-button" onclick="checkWebhookInfo()">Check</button>
+                </div>
+            </div>
+
+            <div class="section">
+                <h2 class="section-title">🗑️ Webhook Deleter</h2>
+                <p class="section-description">Delete an existing Discord webhook.</p>
+                <button class="button" onclick="toggleInput('webhook-delete')">🗑️ Delete Webhook</button>
+                <div id="webhook-delete" class="hidden">
+                    <div class="input-field">
+                        <input type="text" id="webhook-url-delete" placeholder="Enter Webhook URL">
+                    </div>
+                    <button class="send-button" onclick="deleteWebhook()">Delete</button>
+                </div>
+            </div>
+        </div>
+        <!-- Troll Category -->
+        <div class="category">
+            <h2 class="category-title">🤡Troll</h2>
+            <div class="section">
+                <h2 class="section-title">💬 Send Message</h2>
+                <p class="section-description">Send a custom message to your Discord webhook.</p>
+                <button class="button" onclick="toggleInput('send-message')">📩 Send Message</button>
+                <div id="send-message" class="hidden">
+                    <div class="input-field">
+                        <input type="text" id="webhook-url-send" placeholder="Enter Webhook URL">
+                    </div>
+                    <div class="input-field">
+                        <input type="text" id="webhook-username-send" placeholder="Username">
+                    </div>
+                    <div class="input-field">
+                        <input type="text" id="webhook-avatar-send" placeholder="Profile Picture">
+                    </div>
+                    <div class="input-field">
+                        <input type="text" id="message-content" placeholder="Enter Your Message">
+                    </div>
+                    <button class="send-button" onclick="sendMessage()">Send</button>
+                </div>
+            </div>
+
+            <div class="section">
+                <h2 class="section-title">💣 Spam</h2>
+                <p class="section-description">Spam a custom message to your Discord webhook.</p>
+                <button class="button" onclick="toggleInput('spam-message')">💥 Start Spamming</button>
+                <div id="spam-message" class="hidden">
+                    <div class="input-field">
+                        <input type="text" id="webhook-url-spam" placeholder="Enter Webhook URL">
+                    </div>
+                    <div class="input-field">
+                        <input type="text" id="webhook-username-spam" placeholder="Optional: Webhook Username">
+                    </div>
+                    <div class="input-field">
+                        <input type="text" id="webhook-avatar-spam" placeholder="Optional: Webhook Avatar URL">
+                    </div>
+                    <div class="input-field">
+                        <input type="text" id="spam-content" placeholder="Enter Spam Message">
+                    </div>
+                    <div class="input-field">
+                        <input type="number" id="spam-count" placeholder="Number of times to spam" min="1">
+                    </div>
+                    <button class="send-button" onclick="startSpamming()">Start Spam</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="pop-up" class="pop-up">
+        <p id="pop-up-message">Webhook Invalid ❌</p>
+    </div>
+
+    <div class="credit">Made By Dxrk3867 & Zyphix(Summer Theme) <3</div>
+
+    <script>
+       let currentTheme = 'dark';
+
+       function playThemeSound() {
     var audio = new Audio('theme.mp3');
     audio.play();
 }
@@ -34,3 +714,170 @@ function toggleTheme() {
     }
     playThemeSound();
 }
+
+
+
+function playPopupSound() {
+    var audio = document.getElementById('popupSound');
+    audio.play();
+}
+
+
+function playToggleSound() {
+    var audio = document.getElementById('toggleSound');
+    audio.play();
+}
+
+
+function playUntoggleSound() {
+    var audio = document.getElementById('untoggleSound');
+    audio.play();
+}
+
+
+function playClickSound() {
+    var audio = document.getElementById('clickSound');
+    audio.play();
+}
+
+function toggleInput(id) {
+    const section = document.getElementById(id);
+    const inputFields = section.querySelectorAll('.input-field');
+    inputFields.forEach(inputField => inputField.classList.toggle('show'));
+    section.classList.toggle('hidden');
+    
+    
+    if (section.classList.contains('hidden')) {
+        playUntoggleSound(); 
+    } else {
+        playToggleSound(); 
+    }
+}
+
+function checkWebhookInfo() {
+    const webhookURL = document.getElementById('webhook-url-info').value;
+    const popUp = document.getElementById('pop-up');
+    const popUpMessage = document.getElementById('pop-up-message');
+
+    if (webhookURL) {
+        fetch(webhookURL, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        })
+        .then(response => {
+            if (response.ok) {
+                popUpMessage.textContent = 'Webhook is active ✅';
+            } else {
+                popUpMessage.textContent = 'Invalid Webhook ❌';
+            }
+        })
+        .catch(() => {
+            popUpMessage.textContent = 'Invalid Webhook ❌';
+        });
+
+        popUp.classList.add('show');
+        playPopupSound(); 
+    } else {
+        popUpMessage.textContent = 'Invalid Webhook URL ❌';
+        popUp.classList.add('show');
+        playPopupSound(); 
+    }
+
+    playClickSound(); 
+}
+
+function deleteWebhook() {
+    const webhookURL = document.getElementById('webhook-url-delete').value;
+    const popUp = document.getElementById('pop-up');
+    const popUpMessage = document.getElementById('pop-up-message');
+
+    if (webhookURL) {
+        fetch(webhookURL, { method: 'DELETE' })
+            .then(response => response.ok ? popUpMessage.textContent = 'Webhook Deleted ✅' : popUpMessage.textContent = 'Webhook Deletion Failed ❌')
+            .catch(() => popUpMessage.textContent = 'Webhook Deletion Failed ❌');
+
+        popUp.classList.add('show');
+        playPopupSound(); 
+    } else {
+        popUpMessage.textContent = 'Invalid Webhook URL';
+        popUp.classList.add('show');
+        playPopupSound(); 
+    }
+
+    playClickSound(); 
+}
+
+function sendMessage() {
+    const webhookURL = document.getElementById('webhook-url-send').value;
+    const username = document.getElementById('webhook-username-send').value;
+    const avatar = document.getElementById('webhook-avatar-send').value;
+    const messageContent = document.getElementById('message-content').value;
+    const popUp = document.getElementById('pop-up');
+    const popUpMessage = document.getElementById('pop-up-message');
+
+    if (webhookURL && messageContent) {
+        fetch(webhookURL, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                content: messageContent,
+                username: username || undefined,
+                avatar_url: avatar || undefined
+            })
+        })
+            .then(response => response.ok ? popUpMessage.textContent = 'Message Sent ✅' : popUpMessage.textContent = 'Message Sending Failed ❌')
+            .catch(() => popUpMessage.textContent = 'Message Sending Failed ❌');
+
+        popUp.classList.add('show');
+        playPopupSound(); 
+    } else {
+        popUpMessage.textContent = 'Invalid Webhook or Message';
+        popUp.classList.add('show');
+        playPopupSound(); 
+    }
+
+    playClickSound(); 
+}
+
+function startSpamming() {
+    const webhookURL = document.getElementById('webhook-url-spam').value;
+    const username = document.getElementById('webhook-username-spam').value;
+    const avatar = document.getElementById('webhook-avatar-spam').value;
+    const spamContent = document.getElementById('spam-content').value;
+    const spamCount = parseInt(document.getElementById('spam-count').value);
+    const popUp = document.getElementById('pop-up');
+    const message = document.getElementById('pop-up-message');
+
+    if (webhookURL && spamContent && spamCount > 0) {
+        for (let i = 0; i < spamCount; i++) {
+            fetch(webhookURL, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    content: spamContent,
+                    username: username || undefined,
+                    avatar_url: avatar || undefined
+                })
+            });
+        }
+        message.textContent = `${spamCount} Spam Messages Sent ✅`;
+        popUp.classList.add('show');
+        playPopupSound();
+    } else {
+        message.textContent = 'Invalid Webhook or Spam Details';
+        popUp.classList.add('show');
+        playPopupSound(); 
+    }
+
+    playClickSound(); 
+}
+
+function closePopUp() {
+    document.getElementById('pop-up').classList.remove('show');
+}
+
+    </script>
+</body>
+</html>
