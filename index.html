@@ -229,6 +229,12 @@ body {
     display: inline-block;
 }
 
+.button-container {
+    display: flex;
+    gap: 10px; 
+    align-items: center; 
+}
+
 .button:hover {
     background-color: var(--button-hover);
     transform: translateY(-2px);
@@ -579,12 +585,15 @@ body {
     }
 }
 
-    </style>
+</style>
 </head>
 <body>
     <div class="top-bar">
         <h1>Discord Webhook Panel</h1>
-        <button class="theme-toggle" onclick="toggleTheme()">💡</button>
+        <div>
+            <button id="mute-toggle" class="theme-toggle" onclick="toggleMute()">🔊</button>
+            <button class="theme-toggle" onclick="toggleTheme()">💡</button>
+        </div>
     </div>
     <audio id="popupSound" src="popup.mp3" preload="auto"></audio>
     <audio id="toggleSound" src="Toggle.wav" preload="auto"></audio>
@@ -677,7 +686,17 @@ body {
 
     <script>
        let currentTheme = 'dark';
+       let isMuted = false;
 
+function toggleMute() {
+    const muteToggle = document.getElementById('mute-toggle');
+    isMuted = !isMuted;
+    muteToggle.textContent = isMuted ? '🔇' : '🔊';
+    document.getElementById('popupSound').muted = isMuted;
+    document.getElementById('toggleSound').muted = isMuted;
+    document.getElementById('untoggleSound').muted = isMuted;
+    document.getElementById('clickSound').muted = isMuted;
+}
        function playThemeSound() {
     var audio = new Audio('theme.mp3');
     audio.play();
@@ -768,7 +787,10 @@ function checkWebhookInfo() {
         })
         .then(response => {
             if (response.ok) {
-                popUpMessage.textContent = 'Webhook is active ✅';
+                response.json().then(data => {
+                    const username = data.name || 'Unknown';
+                    popUpMessage.textContent = `Webhook is active as: ${username} ✅`;
+                });
             } else {
                 popUpMessage.textContent = 'Invalid Webhook ❌';
             }
@@ -778,15 +800,16 @@ function checkWebhookInfo() {
         });
 
         popUp.classList.add('show');
-        playPopupSound(); 
+        playPopupSound();
     } else {
         popUpMessage.textContent = 'Invalid Webhook URL ❌';
         popUp.classList.add('show');
-        playPopupSound(); 
+        playPopupSound();
     }
 
-    playClickSound(); 
+    playClickSound();
 }
+
 
 function deleteWebhook() {
     const webhookURL = document.getElementById('webhook-url-delete').value;
