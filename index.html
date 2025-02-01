@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Discord Webhook Panel</title>
     <style>
-       :root {
+        :root {
     --bg-primary: #36393f;
     --bg-secondary: #2f3136;
     --bg-tertiary: #202225;
@@ -89,28 +89,6 @@
     --category-border: rgba(255, 205, 210, 0.3);
 }
 
-.summer-theme {
-    --bg-primary: #ffcc80; /* Warm sunset orange */
-    --bg-secondary: #ffb74d; /* Lighter sunset orange */
-    --bg-tertiary: #ffa726; /* Vibrant orange */
-    --text-primary: #ffffff; /* White for readability */
-    --text-secondary: #ffeb3b; /* Bright yellow for highlights */
-    --accent-color: #ff5722; /* Fiery red-orange */
-    --accent-hover: #e64a19; /* Darker red-orange */
-    --pop-up-bg: #ffb74d; /* Soft warm orange */
-    --input-bg: #ffcc80; /* Light warm orange */
-    --input-border: #ff5722; /* Accent border */
-    --input-text-color: #ffffff; /* White text */
-    --button-hover: #e64a19; /* Darker shade for hover effect */
-    --input-border-focus: #ff5722; /* Focused input border */
-    --close-btn-bg: #ff5722; /* Close button in accent color */
-    --close-btn-hover-bg: #e64a19; /* Hover effect */
-    --credit-color: #ffeb3b; /* Bright yellow for contrast */
-    --category-bg: #ffb74d; /* Soft orange category background */
-    --category-border: rgba(255, 235, 59, 0.3); /* Transparent yellow border */
-}
-
-
 * {
     margin: 0;
     padding: 0;
@@ -129,14 +107,8 @@ body {
 }
 
 @keyframes siteLoad {
-    0% {
-        opacity: 0;
-        transform: translateY(-50px);
-    }
-    100% {
-        opacity: 1;
-        transform: translateY(0);
-    }
+    0% { opacity: 0; transform: translateY(-50px); }
+    100% { opacity: 1; transform: translateY(0); }
 }
 
 .top-bar {
@@ -229,12 +201,6 @@ body {
     display: inline-block;
 }
 
-.button-container {
-    display: flex;
-    gap: 10px; 
-    align-items: center; 
-}
-
 .button:hover {
     background-color: var(--button-hover);
     transform: translateY(-2px);
@@ -251,20 +217,6 @@ body {
 }
 
 .theme-toggle:hover {
-    background-color: var(--accent-color);
-}
-
-.theme2-toggle {
-    background-color: var(--bg-tertiary);
-    border: none;
-    color: var(--text-primary);
-    padding: 8px 16px;
-    border-radius: 6px;
-    cursor: pointer;
-    transition: background-color 0.3s ease, color 0.3s ease;
-}
-
-.theme2-toggle:hover {
     background-color: var(--accent-color);
 }
 
@@ -292,14 +244,8 @@ body {
 }
 
 @keyframes slideInFromButton {
-    0% {
-        transform: translateY(-20px);
-        opacity: 0;
-    }
-    100% {
-        transform: translateY(0);
-        opacity: 1;
-    }
+    0% { transform: translateY(-20px); opacity: 0; }
+    100% { transform: translateY(0); opacity: 1; }
 }
 
 .input-field input {
@@ -346,20 +292,24 @@ body {
     transform: translateX(-50%);
     padding: 15px 30px;
     border-radius: 8px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-    z-index: 999;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
     display: none;
     opacity: 0;
-    animation: popUpFadeIn 0.3s forwards;
-}
-
-*, input, button, textarea {
-    cursor: none !important;
+    animation: popUpFadeIn 0.5s ease-out forwards;
 }
 
 .pop-up.show {
     display: block;
-    opacity: 1;
+}
+
+.pop-up .close-btn {
+    background-color: var(--close-btn-bg);
+    border: none;
+    color: white;
+    padding: 5px 10px;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
 }
 
 .pop-up .close-btn:hover {
@@ -383,6 +333,7 @@ body {
     opacity: 1;
 }
 
+/* Halloween Theme Animations */
 .halloween-theme body {
     background: var(--bg-primary);
     animation: flicker 2s infinite alternate;
@@ -423,8 +374,8 @@ body {
 }
 
 .halloween-theme .pop-up {
-    background: var(--bg-primary);
-    animation: float 5s;
+    background: var(--pop-up-bg);
+    animation: float 5s ease-in-out infinite;
 }
 
 .halloween-theme .close-btn {
@@ -437,6 +388,7 @@ body {
     animation: none;
 }
 
+/* Christmas Theme Animations */
 .christmas-theme body {
     background: var(--bg-primary);
     animation: snowfall 10s linear infinite;
@@ -541,91 +493,6 @@ body {
     animation: none;
 }
 
-.space-theme {
-    background: #000000;
-    color: #ffffff;
-    position: relative;
-    overflow: hidden;
-}
-
-.space-theme::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: url('https://www.transparenttextures.com/patterns/stardust.png') repeat;
-    z-index: -1;
-    animation: star-animation 10s linear infinite;
-}
-
-@keyframes star-animation {
-    0% {
-        background-position: 0 0;
-    }
-    100% {
-        background-position: 500px 500px;
-    }
-}
-
-.space-theme .top-bar {
-    background: #1a237e;
-}
-
-.space-theme .category {
-    background: #4a148c;
-    border: 1px solid rgba(255, 255, 255, 0.3);
-}
-
-.space-theme .section {
-    background: #1a237e;
-}
-
-.space-theme .button {
-    background: #d32f2f;
-    border: 1px solid #ff4081;
-    animation: rgb-glow 2s infinite;
-}
-
-.space-theme .button:hover {
-    background: #ff6347;
-    animation: none;
-}
-
-.space-theme .input-field input {
-    background: #0d47a1;
-    border: 1px solid rgba(255, 255, 255, 0.3);
-    color: #fff;
-}
-
-.space-theme .pop-up {
-    background: rgba(255, 255, 255, 0.1);
-}
-
-.space-theme .close-btn {
-    background: #9c27b0;
-    animation: rgb-glow 1.5s infinite;
-}
-
-.space-theme .close-btn:hover {
-    background: #6200ea;
-    animation: none;
-}
-
-
-/* Animations */
-@keyframes rgb-pulse {
-    0% { filter: brightness(1); }
-    100% { filter: brightness(1.3); }
-}
-
-@keyframes rgb-glow {
-    0% { box-shadow: 0 0 5px rgba(255, 0, 0, 0.7); }
-    100% { box-shadow: 0 0 20px rgba(0, 255, 0, 0.7); }
-}
-
-
 /* Animations */
 @keyframes sunshine {
     0% { filter: brightness(1); }
@@ -688,21 +555,34 @@ body {
     }
 }
 
-</style>
+.summer-theme {
+    --bg-primary: #ffcc80; /* Warm sunset orange */
+    --bg-secondary: #ffb74d; /* Lighter sunset orange */
+    --bg-tertiary: #ffa726; /* Vibrant orange */
+    --text-primary: #ffffff; /* White for readability */
+    --text-secondary: #ffeb3b; /* Bright yellow for highlights */
+    --accent-color: #ff5722; /* Fiery red-orange */
+    --accent-hover: #e64a19; /* Darker red-orange */
+    --pop-up-bg: #ffb74d; /* Soft warm orange */
+    --input-bg: #ffcc80; /* Light warm orange */
+    --input-border: #ff5722; /* Accent border */
+    --input-text-color: #ffffff; /* White text */
+    --button-hover: #e64a19; /* Darker shade for hover effect */
+    --input-border-focus: #ff5722; /* Focused input border */
+    --close-btn-bg: #ff5722; /* Close button in accent color */
+    --close-btn-hover-bg: #e64a19; /* Hover effect */
+    --credit-color: #ffeb3b; /* Bright yellow for contrast */
+    --category-bg: #ffb74d; /* Soft orange category background */
+    --category-border: rgba(255, 235, 59, 0.3); /* Transparent yellow border */
+}
+    </style>
 </head>
 <body>
     <div class="top-bar">
         <h1>Discord Webhook Panel</h1>
-        <div>
-            <button id="mute-toggle" class="theme2-toggle" onclick="toggleMute()">🔊</button>
-            <button class="theme-toggle" onclick="toggleTheme()">💡</button>
-        </div>
+        <button class="theme-toggle" onclick="toggleTheme()">💡</button>
     </div>
-    <audio id="popupSound" src="popup.mp3" preload="auto"></audio>
-    <audio id="toggleSound" src="Toggle.wav" preload="auto"></audio>
-    <audio id="untoggleSound" src="Untoggle.wav" preload="auto"></audio>
-    <audio id="clickSound" src="click.mp3" preload="auto"></audio>
-       
+
     <div class="content">
         <!-- Main Category -->
         <div class="category">
@@ -731,9 +611,6 @@ body {
                 </div>
             </div>
         </div>
-
-        
-        
 
         <!-- Troll Category -->
         <div class="category">
@@ -786,325 +663,61 @@ body {
     </div>
 
     <div id="pop-up" class="pop-up">
+        <button class="close-btn" onclick="closePopUp()">❌</button>
         <p id="pop-up-message">Webhook Invalid ❌</p>
     </div>
 
-    <div class="credit">Made By Dxrk3867 & Zyphix <3</div>
+    <div class="credit">Made By Dxrk3867</div>
 
     <script>
-      let currentTheme = 'dark';
-let isMuted = false;
-
-const cursor = document.createElement('div');
-cursor.id = 'cursor';
-cursor.innerHTML = '<div class="horizontal"></div><div class="vertical"></div>';
-document.body.appendChild(cursor);
-
-const styles = document.createElement('style');
-styles.innerHTML = `
-    body { cursor: none; color: white; }
-    #cursor {
-        position: absolute;
-        pointer-events: none;
-        transform: translate(-50%, -50%);
-        z-index: 9999;
-    }
-    #cursor .horizontal,
-    #cursor .vertical {
-        position: absolute;
-        background-color: black;
-    }
-    #cursor .horizontal {
-        width: 30px;
-        height: 2px;
-        top: -1px;
-        left: -15px;
-    }
-    #cursor .vertical {
-        height: 30px;
-        width: 2px;
-        top: -15px;
-        left: -1px;
-    }
-
-    .rgb-theme {
-        background-color: black;
-    }
-
-    .rgb-theme h1, 
-    .rgb-theme h2, 
-    .rgb-theme h3, 
-    .rgb-theme h4, 
-    .rgb-theme h5, 
-    .rgb-theme h6,
-    .rgb-theme p {
-        color: white;
-        animation: chromaGlowText 15s infinite linear;
-    }
-
-    .rgb-theme .button {
-        color: white;
-        background-color: transparent;
-        border: 2px solid white;
-        padding: 10px 20px;
-        cursor: pointer;
-        font-size: 16px;
-        text-align: center;
-        display: inline-block;
-        animation: chromaGlowText 15s infinite linear;
-    }
-
-    .rgb-theme .button:hover {
-        border-color: white;
-        background-color: rgba(255, 255, 255, 0.1);
-    }
-
-    @keyframes chromaGlowText {
-        0% { color: hsl(0, 100%, 50%); text-shadow: 0 0 10px hsl(0, 100%, 50%), 0 0 20px hsl(0, 100%, 50%); }
-        15% { color: hsl(60, 100%, 50%); text-shadow: 0 0 10px hsl(60, 100%, 50%), 0 0 20px hsl(60, 100%, 50%); }
-        30% { color: hsl(120, 100%, 50%); text-shadow: 0 0 10px hsl(120, 100%, 50%), 0 0 20px hsl(120, 100%, 50%); }
-        45% { color: hsl(180, 100%, 50%); text-shadow: 0 0 10px hsl(180, 100%, 50%), 0 0 20px hsl(180, 100%, 50%); }
-        60% { color: hsl(240, 100%, 50%); text-shadow: 0 0 10px hsl(240, 100%, 50%), 0 0 20px hsl(240, 100%, 50%); }
-        75% { color: hsl(300, 100%, 50%); text-shadow: 0 0 10px hsl(300, 100%, 50%), 0 0 20px hsl(300, 100%, 50%); }
-        90% { color: hsl(360, 100%, 50%); text-shadow: 0 0 10px hsl(360, 100%, 50%), 0 0 20px hsl(360, 100%, 50%); }
-        100% { color: hsl(0, 100%, 50%); text-shadow: 0 0 10px hsl(0, 100%, 50%), 0 0 20px hsl(0, 100%, 50%); }
-    }
-`;
-document.head.appendChild(styles);
-
-let cursorX = 0, cursorY = 0;
-
-document.addEventListener('mousemove', (e) => {
-    cursorX = e.clientX;
-    cursorY = e.clientY;
-    requestAnimationFrame(() => {
-        cursor.style.left = `${cursorX}px`;
-        cursor.style.top = `${cursorY}px`;
-    });
-});
-
-function updateCursorColor() {
-    const isSpaceMode = document.body.classList.contains('space-theme');
-    const isLightMode = document.body.classList.contains('light-theme');
-    const isRGBMode = document.body.classList.contains('rgb-theme');
-    const cursorHorizontal = document.querySelector('#cursor .horizontal');
-    const cursorVertical = document.querySelector('#cursor .vertical');
-
-    if (isSpaceMode) {
-        cursorHorizontal.style.backgroundColor = 'white';
-        cursorVertical.style.backgroundColor = 'white';
-    } else if (isLightMode) {
-        cursorHorizontal.style.backgroundColor = 'black';
-        cursorVertical.style.backgroundColor = 'black';
-    } else if (isRGBMode) {
-        cursorHorizontal.style.backgroundColor = 'white';
-        cursorVertical.style.backgroundColor = 'white';
-    } else {
-        cursorHorizontal.style.backgroundColor = 'black';
-        cursorVertical.style.backgroundColor = 'black';
-    }
-}
-
-function toggleMute() {
-    const muteToggle = document.getElementById('mute-toggle');
-    isMuted = !isMuted;
-    muteToggle.textContent = isMuted ? '🔇' : '🔊';
-    document.getElementById('popupSound').muted = isMuted;
-    document.getElementById('toggleSound').muted = isMuted;
-    document.getElementById('untoggleSound').muted = isMuted;
-    document.getElementById('clickSound').muted = isMuted;
-}
-
-function playThemeSound() {
-    var audio = new Audio('theme.mp3');
-    audio.play();
-}
+let currentTheme = 'dark';
 
 function toggleTheme() {
     const body = document.body;
     const themeToggle = document.querySelector('.theme-toggle');
 
     if (currentTheme === 'dark') {
-        body.classList.remove('halloween-theme', 'christmas-theme', 'summer-theme', 'rgb-theme', 'space-theme');
+        body.classList.remove('halloween-theme', 'christmas-theme', 'summer-theme');
         body.classList.add('light-theme');
         themeToggle.textContent = '🌞';
         currentTheme = 'light';
     } else if (currentTheme === 'light') {
-        body.classList.remove('light-theme', 'christmas-theme', 'summer-theme', 'rgb-theme', 'space-theme');
+        body.classList.remove('light-theme', 'christmas-theme', 'summer-theme');
         body.classList.add('halloween-theme');
         themeToggle.textContent = '🎃';
         currentTheme = 'halloween';
     } else if (currentTheme === 'halloween') {
-        body.classList.remove('halloween-theme', 'light-theme', 'summer-theme', 'rgb-theme', 'space-theme');
+        body.classList.remove('halloween-theme', 'light-theme', 'summer-theme');
         body.classList.add('christmas-theme');
         themeToggle.textContent = '🎄';
         currentTheme = 'christmas';
     } else if (currentTheme === 'christmas') {
-        body.classList.remove('christmas-theme', 'light-theme', 'halloween-theme', 'rgb-theme', 'space-theme');
+        body.classList.remove('christmas-theme', 'light-theme', 'halloween-theme');
         body.classList.add('summer-theme');
         themeToggle.textContent = '🌴';
         currentTheme = 'summer';
-    } else if (currentTheme === 'summer') {
-        body.classList.remove('summer-theme', 'light-theme', 'halloween-theme', 'christmas-theme', 'rgb-theme', 'space-theme');
-        body.classList.add('rgb-theme');
-        themeToggle.textContent = '🌈';
-        currentTheme = 'rgb';
-    } else if (currentTheme === 'rgb') {
-        body.classList.remove('rgb-theme', 'light-theme', 'halloween-theme', 'christmas-theme', 'summer-theme', 'space-theme');
-        body.classList.add('space-theme');
-        themeToggle.textContent = '🌌';
-        currentTheme = 'space';
     } else {
-        body.classList.remove('space-theme', 'light-theme', 'halloween-theme', 'christmas-theme', 'summer-theme', 'rgb-theme');
+        body.classList.remove('christmas-theme', 'light-theme', 'halloween-theme', 'summer-theme');
         themeToggle.textContent = '🌙';
         currentTheme = 'dark';
     }
-
-    updateCursorColor();
-    playThemeSound();
-}
-
-
-const muteSound = new Audio('mute.mp3');
-const unmuteSound = new Audio('unmute.mp3');
-const themeSound = new Audio('theme.mp3');
-
-function toggleMute() {
-    const muteToggle = document.getElementById('mute-toggle');
-    isMuted = !isMuted;
-    
-    if (isMuted) {
-        muteSound.play();
-    } else {
-        unmuteSound.play();
-    }
-
-    muteToggle.textContent = isMuted ? '🔇' : '🔊';
-
-    document.getElementById('popupSound').muted = isMuted;
-    document.getElementById('toggleSound').muted = isMuted;
-    document.getElementById('untoggleSound').muted = isMuted;
-    document.getElementById('clickSound').muted = isMuted;
-    
-    themeSound.muted = isMuted;
-}
-
-function playThemeSound() {
-    if (!isMuted) {
-        themeSound.play();
-    }
-}
-
-function toggleTheme() {
-    const body = document.body;
-    const themeToggle = document.querySelector('.theme-toggle');
-
-    if (currentTheme === 'dark') {
-        body.classList.remove('halloween-theme', 'christmas-theme', 'summer-theme', 'rgb-theme', 'space-theme');
-        body.classList.add('light-theme');
-        themeToggle.textContent = '🌞';
-        currentTheme = 'light';
-    } else if (currentTheme === 'light') {
-        body.classList.remove('light-theme', 'christmas-theme', 'summer-theme', 'rgb-theme', 'space-theme');
-        body.classList.add('halloween-theme');
-        themeToggle.textContent = '🎃';
-        currentTheme = 'halloween';
-    } else if (currentTheme === 'halloween') {
-        body.classList.remove('halloween-theme', 'light-theme', 'summer-theme', 'rgb-theme', 'space-theme');
-        body.classList.add('christmas-theme');
-        themeToggle.textContent = '🎄';
-        currentTheme = 'christmas';
-    } else if (currentTheme === 'christmas') {
-        body.classList.remove('christmas-theme', 'light-theme', 'halloween-theme', 'rgb-theme', 'space-theme');
-        body.classList.add('summer-theme');
-        themeToggle.textContent = '🌴';
-        currentTheme = 'summer';
-    } else if (currentTheme === 'summer') {
-        body.classList.remove('summer-theme', 'light-theme', 'halloween-theme', 'christmas-theme', 'rgb-theme', 'space-theme');
-        body.classList.add('rgb-theme');
-        themeToggle.textContent = '🌈';
-        currentTheme = 'rgb';
-    } else if (currentTheme === 'rgb') {
-        body.classList.remove('rgb-theme', 'light-theme', 'halloween-theme', 'christmas-theme', 'summer-theme', 'space-theme');
-        body.classList.add('space-theme');
-        themeToggle.textContent = '🌌';
-        currentTheme = 'space';
-    } else {
-        body.classList.remove('space-theme', 'light-theme', 'halloween-theme', 'christmas-theme', 'summer-theme', 'rgb-theme');
-        themeToggle.textContent = '🌙';
-        currentTheme = 'dark';
-    }
-
-    updateCursorColor();
-    playThemeSound();
-}
-
-function getWebhookExtraInfo() 
-{
-        const webhookURL = document.getElementById('webhook-url-extra').value;
-        const webhookName = document.getElementById('webhook-name');
-        const webhookCreator = document.getElementById('webhook-creator');
-        const webhookServer = document.getElementById('webhook-server');
-        const webhookCreatedAt = document.getElementById('webhook-created-at');
-        const webhookAvatar = document.getElementById('webhook-avatar');
-        const popUp = document.getElementById('pop-up');
-        const popUpMessage = document.getElementById('pop-up-message');
-
-        if (webhookURL) {
-            fetch(webhookURL, { method: 'GET', headers: { 'Content-Type': 'application/json' } })
-                .then(response => response.ok ? response.json() : Promise.reject())
-                .then(data => {
-                    webhookName.textContent = `Webhook Name: ${data.name || 'Unknown'}`;
-                    webhookCreator.textContent = `Created By: ${data.user?.username || 'Unknown'} (${data.user?.id || 'N/A'})`;
-                    webhookServer.textContent = `Server ID: ${data.guild_id || 'Unknown'}`;
-                    webhookCreatedAt.textContent = `Created At: ${new Date(data.id / 4194304 + 1420070400000).toUTCString()}`;
-                    webhookAvatar.src = data.avatar ? data.avatar : '';
-                    webhookAvatar.style.display = data.avatar ? 'block' : 'none';
-                    popUpMessage.textContent = `Webhook Name: ${data.name || 'Unknown'}`;
-                    popUp.classList.add('show');
-                })
-                .catch(() => {
-                    popUpMessage.textContent = 'Invalid Webhook ❌';
-                    popUp.classList.add('show');
-                });
-        } else {
-            popUpMessage.textContent = 'Invalid Webhook URL ❌';
-            popUp.classList.add('show');
-        }
-        playClickSound();
-    }
-
-function playPopupSound() {
-    var audio = document.getElementById('popupSound');
-    audio.play();
-}
-
-function playToggleSound() {
-    var audio = document.getElementById('toggleSound');
-    audio.play();
-}
-
-function playUntoggleSound() {
-    var audio = document.getElementById('untoggleSound');
-    audio.play();
-}
-
-function playClickSound() {
-    var audio = document.getElementById('clickSound');
-    audio.play();
 }
 
 function toggleInput(id) {
     const section = document.getElementById(id);
     const inputFields = section.querySelectorAll('.input-field');
-    inputFields.forEach(inputField => inputField.classList.toggle('show'));
+    
+    // Toggle visibility for the entire section and input fields
     section.classList.toggle('hidden');
-
-    if (section.classList.contains('hidden')) {
-        playUntoggleSound(); 
-    } else {
-        playToggleSound(); 
-    }
+    inputFields.forEach(inputField => {
+        inputField.classList.toggle('show');
+        // Reset the input field visibility to ensure the toggle works
+        if (inputField.classList.contains('show')) {
+            inputField.style.height = inputField.scrollHeight + "px"; // Adjust height to fit content
+        } else {
+            inputField.style.height = 0; // Collapse it when hidden
+        }
+    });
 }
 
 function checkWebhookInfo() {
@@ -1113,20 +726,28 @@ function checkWebhookInfo() {
     const popUpMessage = document.getElementById('pop-up-message');
 
     if (webhookURL) {
-        fetch(webhookURL, { method: 'GET', headers: { 'Content-Type': 'application/json' } })
-        .then(response => response.ok 
-            ? response.json().then(data => popUpMessage.textContent = `Webhook is active as: ${data.name || 'Unknown'} ✅`)
-            : popUpMessage.textContent = 'Invalid Webhook ❌')
-        .catch(() => popUpMessage.textContent = 'Invalid Webhook ❌');
-
-        popUp.classList.add('show');
-        playPopupSound();
+        fetch(webhookURL, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        })
+        .then(response => {
+            if (response.ok) {
+                popUpMessage.textContent = 'Webhook is active ✅';
+            } else {
+                popUpMessage.textContent = 'Invalid Webhook ❌';
+            }
+            popUp.classList.add('show');
+        })
+        .catch(() => {
+            popUpMessage.textContent = 'Invalid Webhook ❌';
+            popUp.classList.add('show');
+        });
     } else {
         popUpMessage.textContent = 'Invalid Webhook URL ❌';
         popUp.classList.add('show');
-        playPopupSound();
     }
-    playClickSound();
 }
 
 function deleteWebhook() {
@@ -1136,17 +757,22 @@ function deleteWebhook() {
 
     if (webhookURL) {
         fetch(webhookURL, { method: 'DELETE' })
-            .then(response => response.ok ? popUpMessage.textContent = 'Webhook Deleted ✅' : popUpMessage.textContent = 'Webhook Deletion Failed ❌')
-            .catch(() => popUpMessage.textContent = 'Webhook Deletion Failed ❌');
-
-        popUp.classList.add('show');
-        playPopupSound(); 
+            .then(response => {
+                if (response.ok) {
+                    popUpMessage.textContent = 'Webhook Deleted ✅';
+                } else {
+                    popUpMessage.textContent = 'Webhook Deletion Failed ❌';
+                }
+                popUp.classList.add('show');
+            })
+            .catch(() => {
+                popUpMessage.textContent = 'Webhook Deletion Failed ❌';
+                popUp.classList.add('show');
+            });
     } else {
-        popUpMessage.textContent = 'Invalid Webhook URL';
+        popUpMessage.textContent = 'Invalid Webhook URL ❌';
         popUp.classList.add('show');
-        playPopupSound(); 
     }
-    playClickSound(); 
 }
 
 function sendMessage() {
@@ -1167,17 +793,62 @@ function sendMessage() {
                 avatar_url: avatar || undefined
             })
         })
-        .then(response => response.ok ? popUpMessage.textContent = 'Message Sent ✅' : popUpMessage.textContent = 'Message Sending Failed ❌')
-        .catch(() => popUpMessage.textContent = 'Message Sending Failed ❌');
-
-        popUp.classList.add('show');
-        playPopupSound(); 
+            .then(response => {
+                if (response.ok) {
+                    popUpMessage.textContent = 'Message Sent ✅';
+                } else {
+                    popUpMessage.textContent = 'Message Sending Failed ❌';
+                }
+                popUp.classList.add('show');
+            })
+            .catch(() => {
+                popUpMessage.textContent = 'Message Sending Failed ❌';
+                popUp.classList.add('show');
+            });
     } else {
-        popUpMessage.textContent = 'Invalid Webhook or Message';
+        popUpMessage.textContent = 'Invalid Webhook or Message ❌';
         popUp.classList.add('show');
-        playPopupSound(); 
     }
-    playClickSound(); 
+}
+
+function startSpamming() {
+    const webhookURL = document.getElementById('webhook-url-spam').value;
+    const username = document.getElementById('webhook-username-spam').value;
+    const avatar = document.getElementById('webhook-avatar-spam').value;
+    const spamContent = document.getElementById('spam-content').value;
+    const spamCount = parseInt(document.getElementById('spam-count').value);
+    const popUp = document.getElementById('pop-up');
+    const popUpMessage = document.getElementById('pop-up-message');
+
+    if (webhookURL && spamContent && spamCount > 0) {
+        let successfulSends = 0;
+        for (let i = 0; i < spamCount; i++) {
+            fetch(webhookURL, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    content: spamContent,
+                    username: username || undefined,
+                    avatar_url: avatar || undefined
+                })
+            })
+                .then(response => {
+                    if (response.ok) {
+                        successfulSends++;
+                    }
+                })
+                .catch(() => {});
+        }
+        popUpMessage.textContent = `${successfulSends}/${spamCount} Spam Messages Sent ✅`;
+        popUp.classList.add('show');
+    } else {
+        popUpMessage.textContent = 'Invalid Webhook or Spam Details ❌';
+        popUp.classList.add('show');
+    }
+}
+
+function closePopUp() {
+    document.getElementById('pop-up').classList.remove('show');
 }
     </script>
 </body>
